@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstddef>
+#include <initializer_list>
 
 namespace myspace
 {
@@ -17,10 +18,11 @@ private:
   void Swap(MyString& other) throw();
 public:
   MyString();
-  MyString(char * base, size_t size);
-  MyString(MyString& string);
+  MyString( const char & base, size_t size );
+  MyString( MyString& string );
+  MyString( std::initializer_list<char> lst);
 
-  MyString& operator=(MyString string);
+  MyString& operator=( MyString string );
 
   ~MyString();
 };
