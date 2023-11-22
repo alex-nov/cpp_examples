@@ -1,0 +1,3 @@
+[submodule "my_string/tests/googletest"]
+	path = my_string/tests/googletest
+	url = https://github.com/google/googletest.git

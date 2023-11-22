@@ -8,6 +8,9 @@ project(${APPNAME}
         DESCRIPTION "String example C++ built with CMake and googletest"
         LANGUAGES CXX)
 
+add_subdirectory(tests)
+
+enable_testing()
 
 add_executable(${APPNAME} 
   main.cpp
