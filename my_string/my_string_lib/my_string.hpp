@@ -6,13 +6,13 @@
 namespace myspace
 {
 
-const unsigned int default_capacity = 10;
+const size_t default_capacity = 10;
 
 class MyString
 {
 private:
-  unsigned int size;
-  unsigned int capacity;
+  size_t sz;
+  size_t cap;
   char * data;
 
   void Swap(MyString& other) throw();
@@ -23,6 +23,11 @@ public:
   MyString( std::initializer_list<char> lst);
 
   MyString& operator=( MyString string );
+
+  inline size_t size()      { return sz; }
+  inline size_t capacity()  { return cap; }
+  inline bool empty()       { return static_cast< bool >( sz ); }
+  inline const char * c_str()       { return data; }
 
   ~MyString();
 };

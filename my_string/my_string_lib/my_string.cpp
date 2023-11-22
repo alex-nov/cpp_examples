@@ -8,37 +8,37 @@ namespace myspace
 {
 
 MyString::MyString() 
-    : size( 0 )
-    , capacity( default_capacity )
-    , data( new char[ capacity ] )
+    : sz( 0 )
+    , cap( default_capacity )
+    , data( new char[ cap ] )
 {
   //TODO make debug output under ifdef
   std::cout << "MyString created" << std::endl;
 }
 
-MyString::MyString( const char & base, size_t size )
-    : size( size )
-    , capacity( size )
-    , data( new char[ capacity ] )
+MyString::MyString( const char & base, size_t sz )
+    : sz( sz )
+    , cap( sz )
+    , data( new char[ cap ] )
 {
-  std::fill( data, data + size, base );
+  std::fill( data, data + sz, base );
   //TODO make debug output under ifdef
   std::cout << "MyString created from base char: " << this->data << std::endl;
 }
 
 MyString::MyString( MyString& string )
-    : size( string.size )
-    , capacity( string.capacity )
-    , data( new char[ string.capacity ] )
+    : sz( string.sz )
+    , cap( string.cap )
+    , data( new char[ string.cap ] )
 {
-  strncpy( this->data, string.data, sizeof(this->data ) );
+  strncpy( this->data, string.data, string.sz );
   //TODO make debug output under ifdef
   std::cout << "MyString created from another MyString: " << this->data << std::endl;
 }
 
 MyString::MyString( std::initializer_list< char > lst )
-    : size( lst.size() )
-    , capacity( lst.size() )
+    : sz( lst.size() )
+    , cap( lst.size() )
     , data( new char[ lst.size() ] )
 {
   size_t i = 0;
@@ -55,12 +55,12 @@ MyString::MyString( std::initializer_list< char > lst )
 void MyString::Swap( MyString& other ) throw()
 {
   using std::swap; // enable ADL, defaulting to std::swap
-  swap( this->size,     other.size );
-  swap( this->capacity, other.capacity );
+  swap( this->sz,     other.sz );
+  swap( this->cap, other.cap );
   swap( this->data,     other.data );
 }
 
-//this->capacity<size ? size : this->capacity
+//this->cap<sz ? sz : this->cap
 MyString& MyString::operator=( MyString copy )
 {
   this->Swap( copy );
