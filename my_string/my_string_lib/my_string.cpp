@@ -16,14 +16,24 @@ MyString::MyString()
   std::cout << "MyString created" << std::endl;
 }
 
-MyString::MyString( const char & base, size_t sz )
-    : sz( sz )
-    , cap( sz )
+MyString::MyString( const char & base, size_t size )
+    : sz( size )
+    , cap( size )
     , data( new char[ cap ] )
 {
   std::fill( data, data + sz, base );
   //TODO make debug output under ifdef
-  std::cout << "MyString created from base char: " << this->data << std::endl;
+  std::cout << "MyString created from base char and size: " << this->data << std::endl;
+}
+
+MyString::MyString( const char * base )
+    : sz( sizeof( base ) )
+    , cap( sz )
+    , data( new char[ cap ] )
+{
+  memcpy(data, base, sz);
+  //TODO make debug output under ifdef
+  std::cout << "MyString created from const char*: " << this->data << std::endl;
 }
 
 MyString::MyString( MyString& string )
@@ -58,6 +68,22 @@ void MyString::Swap( MyString& other ) throw()
   swap( this->sz,     other.sz );
   swap( this->cap, other.cap );
   swap( this->data,     other.data );
+}
+
+MyString& MyString::add(MyString& other)
+{
+  char* new_data = new char[cap + other.cap];
+  memcpy(new_data, data, sz);
+  memcpy(new_data + sz, other.data, other.sz);
+  delete(data);
+  data = new_data;
+
+  sz += other.sz;
+  cap += other.cap;
+
+  //TODO make debug output under ifdef
+  std::cout << "MyString add: " << this->data << std::endl;
+  return *this;
 }
 
 //this->cap<sz ? sz : this->cap

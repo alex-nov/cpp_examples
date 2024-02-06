@@ -2,6 +2,7 @@
 
 #include <cstddef>
 #include <initializer_list>
+#include <compare>
 
 namespace myspace
 {
@@ -19,10 +20,16 @@ private:
 public:
   MyString();
   MyString( const char & base, size_t size );
+  MyString( const char * base );
   MyString( MyString& string );
   MyString( std::initializer_list<char> lst);
 
   MyString& operator=( MyString string );
+
+  MyString& add(MyString& other);
+
+  // TODO: операторы сравнения; операторы << >>
+  //auto operator<=>( const MyString & other ) const = default;
 
   inline size_t size()      { return sz; }
   inline size_t capacity()  { return cap; }
