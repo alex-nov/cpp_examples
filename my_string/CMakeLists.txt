@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(APPNAME "my_string_project")
 set(AP_VERSION 0.1.0)
 
-set (CMAKE_CXX_FLAGS "-Wall -Wextra")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -Wall -Wextra -Werror -Wempty-body -Wredundant-move -Wno-error=deprecated-declarations -Wimplicit-fallthrough")
 
 project(${APPNAME}
         VERSION ${AP_VERSION}
@@ -17,7 +17,7 @@ add_subdirectory(tests)
 
 enable_testing()
 
-add_executable(${APPNAME} 
+add_executable(${APPNAME}
   main.cpp
   my_string_lib/my_string.cpp
   )
