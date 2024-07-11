@@ -53,6 +53,6 @@ int main()
   cout << "maxProfit=" << n.maxProfit( prices ) << endl;
   cout << "maxProfit=" << n.maxProfit( prices1 ) << endl;
   cout << "maxProfit=" << n.maxProfit( prices2 ) << endl;
-  
+
   return 0;
 }

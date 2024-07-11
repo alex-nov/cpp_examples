@@ -7,7 +7,7 @@
 namespace myspace
 {
 
-MyString::MyString() 
+MyString::MyString()
     : sz( 0 )
     , cap( default_capacity )
     , data( new char[ cap ] )

@@ -5,7 +5,7 @@ int main()
 {
     size_t size = 4;
     char mass[size][100] = { "%s %s %s" , "one", "two", "three"};
-    
+
     char rezult[100] = "%s %s %s";
 
 //    char * formater = mass[0];
@@ -17,5 +17,5 @@ int main()
         std::cout << i << ": " << tmp << std::endl;
         //strcpy(rezult, tmp);
     }
-    return 0; 
+    return 0;
 }
