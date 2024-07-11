@@ -7,7 +7,7 @@
 namespace myspace
 {
 
-MyString::MyString() 
+MyString::MyString()
     : size( 0 )
     , capacity( default_capacity )
     , data( new char[ capacity ] )
@@ -31,7 +31,7 @@ MyString::MyString( MyString& string )
     , capacity( string.capacity )
     , data( new char[ string.capacity ] )
 {
-  strncpy( this->data, string.data, sizeof(this->data ) );
+  strncpy( this->data, string.data, string.size );
   //TODO make debug output under ifdef
   std::cout << "MyString created from another MyString: " << this->data << std::endl;
 }
