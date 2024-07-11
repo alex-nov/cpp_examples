@@ -7,7 +7,7 @@
 namespace myspace
 {
 
-MyString::MyString() 
+MyString::MyString()
     : sz( 0 )
     , cap( default_capacity )
     , data( new char[ cap ] )
@@ -75,7 +75,7 @@ MyString& MyString::add(MyString& other)
   char* new_data = new char[cap + other.cap];
   memcpy(new_data, data, sz);
   memcpy(new_data + sz, other.data, other.sz);
-  delete(data);
+  delete[] data;
   data = new_data;
 
   sz += other.sz;
