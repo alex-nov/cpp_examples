@@ -33,7 +33,7 @@ public:
 
   inline size_t size()      { return sz; }
   inline size_t capacity()  { return cap; }
-  inline bool empty()       { return static_cast< bool >( sz ); }
+  inline bool empty()       { return sz == 0; }
   inline const char * c_str()       { return data; }
 
   ~MyString();

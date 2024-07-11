@@ -22,6 +22,7 @@ MyString::MyString( const char & base, size_t size )
     , data( new char[ cap ] )
 {
   std::fill( data, data + sz, base );
+  data[ sz ] = '\0';
   //TODO make debug output under ifdef
   std::cout << "MyString created from base char and size: " << this->data << std::endl;
 }
