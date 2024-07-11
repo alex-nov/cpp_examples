@@ -13,5 +13,15 @@ int main()
 
   MyString string5 = string4;
   string5 = string2;
+/* TODO
+  std::cout << "string tests compare1" << string1 == string2 << std::endl;
+  std::cout << "string tests compare2" << string2 > string3 << std::endl;
+  std::cout << "string tests compare1" << string3 < string4 << std::endl;
+*/
+  MyString string6( "Hello " );
+  MyString string7( "world!" );
+
+  string6.add( string7 );
+
   return 0;
 }
