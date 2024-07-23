@@ -14,6 +14,7 @@ project(${APPNAME}
         LANGUAGES CXX)
 
 add_subdirectory(tests)
+add_subdirectory(tests/googletest)
 
 enable_testing()
 
@@ -21,3 +22,8 @@ add_executable(${APPNAME}
   main.cpp
   my_string_lib/my_string.cpp
   )
+
+target_link_libraries(${APPNAME}
+    gtest
+    gtest_main
+)

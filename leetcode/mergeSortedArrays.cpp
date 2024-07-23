@@ -9,7 +9,7 @@ public:
         vector<int> result;
         int k,j;
         k = j = 0;
-        result.reserve( nums1.size() );
+        result.reserve( nums1.size() + nums2.size() );
         for( int i = 0; i < nums1.size(); ++i )
         {
             result.emplace_back( nums1[ j ] <= nums2[ k ] ? nums1[ j++ ] : nums2[ k++ ]);

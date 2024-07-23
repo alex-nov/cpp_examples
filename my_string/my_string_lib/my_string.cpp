@@ -28,7 +28,7 @@ MyString::MyString( const char & base, size_t size )
 }
 
 MyString::MyString( const char * base )
-    : sz( sizeof( base ) )
+    : sz( strlen( base ) )
     , cap( sz )
     , data( new char[ cap ] )
 {
@@ -37,7 +37,7 @@ MyString::MyString( const char * base )
   std::cout << "MyString created from const char*: " << this->data << std::endl;
 }
 
-MyString::MyString( MyString& string )
+MyString::MyString( const MyString & string )
     : sz( string.sz )
     , cap( string.cap )
     , data( new char[ string.cap ] )
@@ -66,9 +66,9 @@ MyString::MyString( std::initializer_list< char > lst )
 void MyString::Swap( MyString& other ) throw()
 {
   using std::swap; // enable ADL, defaulting to std::swap
-  swap( this->sz,     other.sz );
-  swap( this->cap, other.cap );
-  swap( this->data,     other.data );
+  swap( this->sz,   other.sz );
+  swap( this->cap,  other.cap );
+  swap( this->data, other.data );
 }
 
 MyString& MyString::add(MyString& other)

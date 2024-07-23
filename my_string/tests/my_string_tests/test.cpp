@@ -2,11 +2,8 @@
 #include "my_string.hpp"
 
 #include <iostream>
-/*
-    MyString string2( 'x', 10 );
-  MyString string3( string2 );
-  MyString string4{'a', 'b', 'c', 'd', 'e'};
-*/
+
+//ctest --verbose
 
 TEST(my_string_tests, empty_string)
 {
@@ -20,7 +17,7 @@ TEST(my_string_tests, init_multiply_symbol)
     myspace::MyString str( 'x', 5 );
     EXPECT_FALSE( str.empty() );
     EXPECT_EQ( str.size(), 5 );
-    EXPECT_EQ( "xxxxx", str.c_str() );
+    EXPECT_EQ( "xxxxx", str.c_str() ) << "MyString.data is wrong";
 }
 
 TEST(my_string_tests, init_from_const_str)
@@ -47,4 +44,14 @@ TEST(my_string_tests, init_from_another_str)
     EXPECT_FALSE( str2.empty() );
     EXPECT_EQ( "xxxxx", str2.c_str() );
     //TODO : EXPECT_EQ( str1, str2 );
+}
+
+TEST(my_string_tests, add_str)
+{
+    myspace::MyString str1( "Hello " );
+    myspace::MyString str2( "world!" );
+    ASSERT_FALSE( str1.empty() );
+    ASSERT_FALSE( str2.empty() );
+    str1.add( str2 );
+    EXPECT_EQ( "Hello world!", str1.c_str() );
 }

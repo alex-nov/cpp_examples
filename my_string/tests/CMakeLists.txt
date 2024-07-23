@@ -8,8 +8,6 @@ project(${APPNAME}
         DESCRIPTION "String example C++ built with CMake and googletest"
         LANGUAGES CXX)
 
-add_subdirectory(googletest)
-
 include_directories( ${PROJECT_SOURCE_DIR}/../my_string_lib)
 
 enable_testing()

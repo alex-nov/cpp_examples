@@ -21,7 +21,7 @@ public:
   MyString();
   MyString( const char & base, size_t size );
   MyString( const char * base );
-  MyString( MyString& string );
+  MyString( const MyString& string );
   MyString( std::initializer_list<char> lst);
 
   MyString& operator=( MyString string );
@@ -36,7 +36,7 @@ public:
   inline bool empty()       { return sz == 0; }
   inline const char * c_str()       { return data; }
 
-  ~MyString();
+  virtual ~MyString();
 };
 
 }
