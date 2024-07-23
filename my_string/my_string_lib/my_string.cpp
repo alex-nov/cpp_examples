@@ -18,10 +18,10 @@ MyString::MyString()
 
 MyString::MyString( const char & base, size_t size )
     : sz( size )
-    , cap( size )
+    , cap( size + 1 )
     , data( new char[ cap ] )
 {
-  std::fill( data, data + sz, base );
+  memset( data, base, size);
   data[ sz ] = '\0';
   //TODO make debug output under ifdef
   std::cout << "MyString created from base char and size: " << this->data << std::endl;
@@ -29,10 +29,11 @@ MyString::MyString( const char & base, size_t size )
 
 MyString::MyString( const char * base )
     : sz( strlen( base ) )
-    , cap( sz )
+    , cap( sz + 1 )
     , data( new char[ cap ] )
 {
   memcpy(data, base, sz);
+  data[ sz ] = '\0';
   //TODO make debug output under ifdef
   std::cout << "MyString created from const char*: " << this->data << std::endl;
 }
@@ -49,7 +50,7 @@ MyString::MyString( const MyString & string )
 
 MyString::MyString( std::initializer_list< char > lst )
     : sz( lst.size() )
-    , cap( lst.size() )
+    , cap( lst.size() + 1 )
     , data( new char[ lst.size() ] )
 {
   size_t i = 0;
@@ -57,6 +58,7 @@ MyString::MyString( std::initializer_list< char > lst )
   {
     data[ i++ ] = ch;
   }
+  data[ sz ] = '\0';
   // или std::copy(lst.begin(), lst.edn(), data );
 
   //TODO make debug output under ifdef
@@ -82,12 +84,49 @@ MyString& MyString::add(MyString& other)
   sz += other.sz;
   cap += other.cap;
 
+  data[ sz + other.sz ] = '\0';
+
   //TODO make debug output under ifdef
   std::cout << "MyString add: " << this->data << std::endl;
   return *this;
 }
 
-//this->cap<sz ? sz : this->cap
+/*
+bool operator==( const MyString & string1, const MyString & string2)
+{
+  return string1.operator==( string2 );
+}
+
+bool operator<( const MyString & string1, const MyString & string2)
+{
+  return string1.operator<( string2 );
+}
+*/
+
+bool MyString::operator==( const MyString & str ) const
+{
+  std::cout << "MyString operator==" << std::endl;
+  return !strncmp( data, str.data, sz );
+}
+
+bool MyString::operator!=( const MyString & string ) const
+{
+  std::cout << "MyString operator!=" << std::endl;
+  return !( this->operator==( string ) );
+}
+
+bool MyString::operator<( const MyString & string ) const
+{
+  std::cout << "MyString operator<" << std::endl;
+  return sz < string.sz;
+}
+
+bool MyString::operator>( const MyString & string ) const
+{
+  std::cout << "MyString operator>" << std::endl;
+  return !( this->operator<( string ) );
+}
+
 MyString& MyString::operator=( MyString copy )
 {
   this->Swap( copy );
