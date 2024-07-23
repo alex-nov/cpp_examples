@@ -16,7 +16,7 @@ private:
   size_t cap;
   char * data;
 
-  void Swap(MyString& other) throw();
+  void Swap( MyString& other ) throw();
 public:
   MyString();
   MyString( const char & base, size_t size );
@@ -26,15 +26,22 @@ public:
 
   MyString& operator=( MyString string );
 
-  MyString& add(MyString& other);
+  MyString& add( MyString& other) ;
 
   // TODO: операторы сравнения; операторы << >>
   //auto operator<=>( const MyString & other ) const = default;
+  bool operator==( const MyString & string ) const;
+  bool operator!=( const MyString & string ) const;
+  bool operator<( const MyString & string ) const;
+  bool operator>( const MyString & string ) const;
 
-  inline size_t size()      { return sz; }
-  inline size_t capacity()  { return cap; }
-  inline bool empty()       { return sz == 0; }
-  inline const char * c_str()       { return data; }
+  //friend bool operator==( const MyString & string1, const MyString & string2);
+  //friend bool operator<( const MyString & string1, const MyString & string2);
+
+  inline size_t size() const { return sz; }
+  inline size_t capacity() const { return cap; }
+  inline bool empty() const { return sz == 0; }
+  inline const char * c_str() const { return data; }
 
   virtual ~MyString();
 };
