@@ -75,7 +75,7 @@ TEST(my_string_tests, equality_operators)
     EXPECT_FALSE( str1 != str2 );
 }
 
-TEST(my_string_tests, less_more_operators)
+TEST(my_string_tests, less_more_operators_eq_symbols)
 {
     MyString str1( 'x', 5 );
     MyString str2( 'x', 6 );
@@ -88,3 +88,18 @@ TEST(my_string_tests, less_more_operators)
     EXPECT_TRUE( str2 > str1 );
     EXPECT_FALSE( str1 > str2 );
 }
+
+TEST(my_string_tests, less_more_operators_diff_symbols)
+{
+    MyString str1( "abcd" );
+    MyString str2( "abed" );
+    MyString str3( "abCd" );
+
+    ASSERT_FALSE( str1.empty() );
+    ASSERT_FALSE( str2.empty() );
+    ASSERT_FALSE( str3.empty() );
+
+    EXPECT_TRUE( str1 < str2 );
+    EXPECT_TRUE( str3 < str1 );
+}
+

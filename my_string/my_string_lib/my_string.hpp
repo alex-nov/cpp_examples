@@ -35,8 +35,6 @@ public:
   bool operator<( const MyString & string ) const;
   bool operator>( const MyString & string ) const;
 
-  //friend bool operator==( const MyString & string1, const MyString & string2);
-  //friend bool operator<( const MyString & string1, const MyString & string2);
 
   inline size_t size() const { return sz; }
   inline size_t capacity() const { return cap; }
