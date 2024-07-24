@@ -103,3 +103,18 @@ TEST(my_string_tests, less_more_operators_diff_symbols)
     EXPECT_TRUE( str3 < str1 );
 }
 
+TEST(my_string_tests, operators_square_brackets)
+{
+    MyString str1( "abcd" );
+    ASSERT_FALSE( str1.empty() );
+    EXPECT_TRUE( 'a' == str1[0] );
+    EXPECT_TRUE( 'd' == str1[str1.size() - 1] );
+    str1[0] = 'x';
+    EXPECT_TRUE( 'x' == str1[0] );
+
+    //const operator []
+    const MyString str2( "abcd" );
+    ASSERT_FALSE( str2.empty() );
+    EXPECT_TRUE( 'a' == str2[0] );
+    EXPECT_TRUE( 'd' == str2[str2.size() - 1] );
+}
