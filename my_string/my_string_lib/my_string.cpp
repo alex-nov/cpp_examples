@@ -124,6 +124,16 @@ bool MyString::operator>( const MyString & string ) const
   return string.sz < sz;
 }
 
+char & MyString::operator[]( size_t index )
+{
+  if( index >= sz ) throw std::out_of_range("out of size of MyString");
+  return data[index];
+}
+
+const char & MyString::operator[]( size_t index ) const
+{
+  if( index >= sz ) throw std::out_of_range("out of size of MyString");
+  return data[index];
 }
 
 MyString& MyString::operator=( MyString copy )
@@ -132,6 +142,31 @@ MyString& MyString::operator=( MyString copy )
   //TODO make debug output under ifdef
   std::cout << "MyString operator= from MyString: " << this->data << std::endl;
   return *this;
+}
+
+std::ostream & operator<<( std::ostream & stream, MyString & str )
+{
+  stream << str.data;
+  return stream;
+}
+
+std::istream & operator>>( std::istream & stream, MyString & str )
+{
+  char * buff = new char[1024]{0};
+  stream.get( buff, 1024);
+  if( stream.fail() || stream.bad() )
+  {
+    str = MyString();
+  }
+  else
+  {
+    str.sz = strlen(buff);
+    str.cap = str.sz + 1;
+    buff[str.sz] = '\0';
+    std::swap( buff, str.data );
+    delete [] buff;
+  }
+  return stream;
 }
 
 MyString::~MyString()

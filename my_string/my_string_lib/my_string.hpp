@@ -3,6 +3,7 @@
 #include <cstddef>
 #include <initializer_list>
 #include <compare>
+#include <iostream>
 
 namespace myspace
 {
@@ -28,13 +29,16 @@ public:
 
   MyString& add( MyString& other) ;
 
-  // TODO: операторы сравнения; операторы << >>
-  //auto operator<=>( const MyString & other ) const = default;
   bool operator==( const MyString & string ) const;
   bool operator!=( const MyString & string ) const;
   bool operator<( const MyString & string ) const;
   bool operator>( const MyString & string ) const;
 
+  char & operator[]( size_t index );
+  const char & operator[]( size_t index ) const;
+
+  friend std::ostream & operator<<( std::ostream & stream, MyString & str );
+  friend std::istream & operator>>( std::istream & stream, MyString & str );
 
   inline size_t size() const { return sz; }
   inline size_t capacity() const { return cap; }
