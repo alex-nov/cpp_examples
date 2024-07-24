@@ -91,21 +91,10 @@ MyString& MyString::add(MyString& other)
   return *this;
 }
 
-/*
-bool operator==( const MyString & string1, const MyString & string2)
-{
-  return string1.operator==( string2 );
-}
-
-bool operator<( const MyString & string1, const MyString & string2)
-{
-  return string1.operator<( string2 );
-}
-*/
-
 bool MyString::operator==( const MyString & str ) const
 {
   std::cout << "MyString operator==" << std::endl;
+  if( str.sz != sz ) return false;
   return !strncmp( data, str.data, sz );
 }
 
@@ -118,13 +107,23 @@ bool MyString::operator!=( const MyString & string ) const
 bool MyString::operator<( const MyString & string ) const
 {
   std::cout << "MyString operator<" << std::endl;
-  return sz < string.sz;
+  if( sz < string.sz ) return true;
+  else if( string.sz < sz ) return false;
+
+  for( size_t i = 0; i < sz; ++i )
+  {
+    if( static_cast<int>( data[sz] ) > static_cast<int>( string.data[sz] ) ) return false;
+  }
+
+  return true;
 }
 
 bool MyString::operator>( const MyString & string ) const
 {
   std::cout << "MyString operator>" << std::endl;
-  return !( this->operator<( string ) );
+  return string.sz < sz;
+}
+
 }
 
 MyString& MyString::operator=( MyString copy )
